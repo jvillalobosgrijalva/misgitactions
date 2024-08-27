@@ -1,76 +1,18 @@
-name: pruebas-github-actions
-on: [push]
-jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
-
-
-
-name: Tecmilenio
-
-on:
-  push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Run a one-line script
-        run: echo Hola mundo desde Tecmilenio
-
-
-
-echo ":: Workflow-Command Parameter1 ={data}, parameter2 ={data}::{command value}"::set-output name={name}::{value}::debug::{message}::notice file={name},line={line},endLine={endLine},title={title}::{message}
-
-
-on:
-  push:
-    branches:
-      - main
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: aws-actions/setup-sam@v1
-      - uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
-      - run: sam build --use-container
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
-
-
-
 name: GitHub Actions Practica
+
 on: [push]
+
 jobs:
   Explorando-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - run: echo "El flujo de trabajo ha sido ejecutado en el evento:  ${{ github.event_name }}"
-      - run: echo "El trabajo se esta ejecutando en un servidor  ${{ runner.os }} hospedado en GitHub"
+      - run: echo "El trabajo se está ejecutando en un servidor ${{ runner.os }} hospedado en GitHub"
       - run: echo "El nombre de la rama es:  ${{ github.ref }} y tu repositorio es: ${{ github.repository }}."
-      - name: Verifica el codigo del repositorio
-          uses: actions/checkout@v2
-      - run: echo "El repositorio: ${{ github.repository }} ha sido colonado al runner."
-      - run: echo " El flujo de trabajo esta listo para para verificar el código en el runner."
+      - name: Verifica el código del repositorio
+        uses: actions/checkout@v2
+      - run: echo "El repositorio: ${{ github.repository }} ha sido clonado al runner."
+      - run: echo "El flujo de trabajo está listo para verificar el código en el runner."
       - name: Listar archivos en el repositorio
-        run: |
-          ls ${{ github.workspace }}
+        run: ls ${{ github.workspace }}
       - run: echo "El estado del trabajo es: ${{ job.status }}."
