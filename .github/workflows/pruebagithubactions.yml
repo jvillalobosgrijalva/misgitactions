@@ -13,7 +13,7 @@ jobs:
 
 
 
-name: Tecmilenio 
+name: Tecmilenio
 
 on:
   push:
@@ -33,10 +33,7 @@ jobs:
 
 
 
-echo ":: Workflow-Command Parameter1 ={data}, parameter2 ={data}::{command value}"
-::set-output name={name}
-::{value}::debug::{message}
-::notice file={name},line={line},endLine={endLine},title={title}::{message}
+echo ":: Workflow-Command Parameter1 ={data}, parameter2 ={data}::{command value}"::set-output name={name}::{value}::debug::{message}::notice file={name},line={line},endLine={endLine},title={title}::{message}
 
 
 on:
